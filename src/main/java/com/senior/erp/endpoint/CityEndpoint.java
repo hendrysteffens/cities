@@ -63,8 +63,29 @@ public class CityEndpoint {
 	@RequestMapping(path = "/column",
 			params = "name",
 			method = RequestMethod.GET)
-	public List<String> getColumn(@RequestParam String column){
-		return cityService.getAllRowsByColumn(column);
+	public Object getColumns(@RequestParam String name){
+		return new Object(){
+			public List<String > columns = cityService.getAllRowsByColumn(name);
+			@SuppressWarnings("unused")
+			public int totalRows = columns.size();
+		};
+	}
+	
+	@RequestMapping(path = "/column",
+			params = {"name", "filter"},
+			method = RequestMethod.GET)
+	public Object getColumns(@RequestParam String name, @RequestParam String filter){
+		return new Object(){
+			public List<String > columns = cityService.getAllRowsByColumnFilterByString(name, filter);
+			@SuppressWarnings("unused")
+			public int totalRows = columns.size();
+		};
+	}
+	
+	@RequestMapping(path = "/count",
+			method = RequestMethod.GET)
+	public long countCities(){
+		return cityService.count();
 	}
 	
 }

@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.senior.erp.domain.City;
 
-public interface CityRepository extends CrudRepository<City, Long> {
+@Repository
+public interface CityRepository extends CrudRepository<City, Long>, CityRepositoryCustom {
 
 	@Query(FIND_CAPITALS_QUERY)
     public List<City> findAllCapitals();
@@ -19,7 +21,5 @@ public interface CityRepository extends CrudRepository<City, Long> {
 	
 	public final String FIND_CAPITALS_QUERY = "FROM City WHERE CAPITAL = TRUE";
 	public final String FIND_CAPITALS_QUERY_ORDERED = "FROM City WHERE CAPITAL = TRUE ORDER BY NAME";
-	
-	
 	
 }

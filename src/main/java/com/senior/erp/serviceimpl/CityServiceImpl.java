@@ -59,4 +59,24 @@ public class CityServiceImpl implements CityService{
 		return null;
 	}
 
+	@Override
+	public List<String> getAllRowsByColumn(String column) {
+		return cityRepository.getAllRowsByColumn(column).stream()//
+														.distinct()//
+														.collect(Collectors.toList());//
+	}
+
+	@Override
+	public List<String> getAllRowsByColumnFilterByString(String column, String filter) {
+		return cityRepository.getAllRowsByColumn(column).stream()//
+														.filter(c -> c.toUpperCase().contains(filter.toUpperCase()))//
+														.collect(Collectors.toList());//
+	}
+
+	@Override
+	public long count() {
+		return cityRepository.count(); 
+	}
+	
+
 }

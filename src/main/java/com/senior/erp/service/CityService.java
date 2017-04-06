@@ -27,4 +27,8 @@ public interface CityService {
 
 	public List<String> getAllRowsByColumn(String column);
 
+	public List<String> getAllRowsByColumnFilterByString(String name, String filter);
+
+	public long count();
+
 }
