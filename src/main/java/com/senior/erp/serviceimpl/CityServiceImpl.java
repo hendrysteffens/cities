@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.senior.erp.domain.City;
@@ -23,11 +24,13 @@ public class CityServiceImpl implements CityService {
 	}
 	
 	@Override
+	@Cacheable("CITIES_BY_UF")
 	public List<City> findAllCitiesByUF(String uf){
 		return cityRepository.findAllCitiesByUf(uf.toUpperCase());
 	}
 	
 	@Override
+	@Cacheable("CITIES_NAME_BY_UF")
 	public List<String> findAllCitiesNameByUF(String uf){
 		return cityRepository.findAllCitiesByUf(uf.toUpperCase()).stream()
 																 .map(City::getName)  //
@@ -35,11 +38,13 @@ public class CityServiceImpl implements CityService {
 	}
 
 	@Override
+	@Cacheable("ALL_CITIES")
 	public List<City> findAll() {
 		return StreamSupport.stream(cityRepository.findAll().spliterator(), false).collect(Collectors.toList());
 	}
 
 	@Override
+	@Cacheable("ALL_CAPITALS")
 	public List<City> findAllCapitalsOrdenedByName() {
 		return cityRepository.findAllCapitalsOrderedByName();
 	}
@@ -55,6 +60,7 @@ public class CityServiceImpl implements CityService {
 	}
 
 	@Override
+	@Cacheable("CITIES_MORE_FAR")
 	public List<City> citiesMoreFar() {
 		return cityRepository.findIdOfCitiesMoreFar().stream()//
 							 .map(this::findCityByIBGEId)//
@@ -62,6 +68,7 @@ public class CityServiceImpl implements CityService {
 	}
 
 	@Override
+	@Cacheable("COLUMN")
 	public List<String> getAllRowsByColumn(String column) {
 		return cityRepository.getAllRowsByColumn(column).stream()//
 														.distinct()//
