@@ -12,13 +12,13 @@ import com.senior.erp.repository.CityRepository;
 import com.senior.erp.service.CityService;
 
 @Service
-public class CityServiceImpl implements CityService{
+public class CityServiceImpl implements CityService {
 
 	@Autowired
 	private CityRepository cityRepository;
 	
 	@Override
-	public City findCityByIBGEId(Long id) {
+	public City findCityByIBGEId(int id) {
 		return cityRepository.findOne(id);
 	}
 	
@@ -30,7 +30,7 @@ public class CityServiceImpl implements CityService{
 	@Override
 	public List<String> findAllCitiesNameByUF(String uf){
 		return cityRepository.findAllCitiesByUf(uf.toUpperCase()).stream()
-																 .map(city -> city.getName())  //
+																 .map(City::getName)  //
 																 .collect(Collectors.toList());//
 	}
 
@@ -51,12 +51,14 @@ public class CityServiceImpl implements CityService{
 
 	@Override
 	public void removeCity(int id) {
-		cityRepository.delete(Long.valueOf(id));
+		cityRepository.delete(id);
 	}
 
 	@Override
-	public List<City> moreFar() {
-		return null;
+	public List<City> citiesMoreFar() {
+		return cityRepository.findIdOfCitiesMoreFar().stream()//
+							 .map(this::findCityByIBGEId)//
+							 .collect(Collectors.toList());//
 	}
 
 	@Override
@@ -74,9 +76,8 @@ public class CityServiceImpl implements CityService{
 	}
 
 	@Override
-	public long count() {
+	public long countCities() {
 		return cityRepository.count(); 
 	}
-	
 
 }
