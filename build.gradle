@@ -20,7 +20,7 @@ apply plugin: 'idea'
 apply plugin: 'docker'
 
 jar {
-	baseName = 'erp-test'
+	baseName = 'erp-challenge'
 	version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
