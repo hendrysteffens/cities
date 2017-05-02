@@ -1,10 +1,10 @@
-package com.senior.erp.service;
+package com.ibge.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.senior.erp.domain.City;
+import com.ibge.domain.City;
 
 @Service
 public interface CityService {

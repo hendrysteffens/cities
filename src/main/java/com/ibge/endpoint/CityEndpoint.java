@@ -1,4 +1,4 @@
-package com.senior.erp.endpoint;
+package com.ibge.endpoint;
 
 import java.util.List;
 
@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.senior.erp.domain.City;
-import com.senior.erp.service.CityService;
+import com.ibge.domain.City;
+import com.ibge.domain.EncapsuledBussinesObjectWithGenericsFields;
+import com.ibge.service.CityService;
 
 @RestController
 @RequestMapping("/city")
@@ -44,6 +45,12 @@ public class CityEndpoint {
 	public List<City> getAllCitiesByUF(@PathVariable String name) {
 		return cityService.findAllCitiesByUF(name);
 	}
+	
+	@RequestMapping(path = "/uf/{name}/count",// 
+			method = RequestMethod.GET)// 
+	public int getCountCitiesByUF(@PathVariable String name) {
+		return cityService.findAllCitiesByUF(name).size();
+	}
 
 	@RequestMapping(path = "/{id}",// 
 					method = RequestMethod.DELETE)//
@@ -57,7 +64,7 @@ public class CityEndpoint {
 	}
 	
 	@RequestMapping(path = "/more-far",// 
-			method = RequestMethod.GET)// 
+					method = RequestMethod.GET)// 
 	public List<City> getCitiesMoreFar() {
 		return cityService.citiesMoreFar();
 	}
@@ -66,22 +73,17 @@ public class CityEndpoint {
 					params = "name", //
 					method = RequestMethod.GET)//
 	public Object getColumns(@RequestParam String name) {
-		return new Object(){
-			public List<String> columns = cityService.getAllRowsByColumn(name);
-			@SuppressWarnings("unused")
-			public int totalRows = columns.size();
-		};
+		List<String> columns = cityService.getAllRowsByColumn(name);
+		return new EncapsuledBussinesObjectWithGenericsFields<>(columns.size(), columns);
 	}
 
 	@RequestMapping(path = "/column",// 
 					params = { "name", "filter" },// 
 					method = RequestMethod.GET)//
 	public Object getColumns(@RequestParam String name, @RequestParam String filter) {
-		return new Object() {
-			public List<String> columns = cityService.getAllRowsByColumnFilterByString(name, filter);
-			@SuppressWarnings("unused")
-			public int totalRows = columns.size();
-		};
+		List<String> columns = cityService.getAllRowsByColumnFilterByString(name, filter);
+		return new EncapsuledBussinesObjectWithGenericsFields<>(columns.size(), columns);
+		
 	}
 
 	@RequestMapping(path = "/count",// 

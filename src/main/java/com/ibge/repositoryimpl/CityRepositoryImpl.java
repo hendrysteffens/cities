@@ -1,11 +1,11 @@
-package com.senior.erp.repositoryimpl;
+package com.ibge.repositoryimpl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.senior.erp.repository.CityRepositoryCustom;
+import com.ibge.repository.CityRepositoryCustom;
 
 public class CityRepositoryImpl implements CityRepositoryCustom{
 

@@ -1,4 +1,4 @@
-package com.senior.erp;
+package com.ibge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,9 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @EnableCaching
 @SpringBootApplication
-public class ErpApplication {
+public class IBGEApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ErpApplication.class, args);
+		SpringApplication.run(IBGEApplication.class, args);
 	}
 }

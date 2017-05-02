@@ -1,4 +1,4 @@
-package com.senior.erp.repository;
+package com.ibge.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.senior.erp.domain.City;
+import com.ibge.domain.City;
 
 @Repository
 public interface CityRepository extends CrudRepository<City, Integer>, CityRepositoryCustom {
@@ -20,6 +20,6 @@ public interface CityRepository extends CrudRepository<City, Integer>, CityRepos
 	public List<City> findAllCitiesByUf(String uf);
 	
 	public static final String FIND_CAPITALS_QUERY = "FROM City WHERE CAPITAL = TRUE";
-	public static final String FIND_CAPITALS_QUERY_ORDERED = "FROM City WHERE CAPITAL = TRUE ORDER BY NAME";
+	public static final String FIND_CAPITALS_QUERY_ORDERED = FIND_CAPITALS_QUERY + " ORDER BY NAME";
 	
 }

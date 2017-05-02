@@ -1,4 +1,4 @@
-package com.senior.erp.repository;
+package com.ibge.repository;
 
 import java.util.List;
 

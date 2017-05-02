@@ -1,4 +1,4 @@
-package com.senior.erp.repositoryimpl;
+package com.ibge.repositoryimpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.senior.erp.domain.UF;
-import com.senior.erp.repository.UFRepository;
+import com.ibge.domain.UF;
+import com.ibge.repository.UFRepository;
 
 @Repository
 public class UFRepositoryImpl implements UFRepository {

@@ -1,10 +1,10 @@
-package com.senior.erp.repository;
+package com.ibge.repository;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.senior.erp.domain.UF;
+import com.ibge.domain.UF;
 
 @Repository
 public interface UFRepository {

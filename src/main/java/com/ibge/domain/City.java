@@ -1,4 +1,4 @@
-package com.senior.erp.domain;
+package com.ibge.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -130,6 +130,33 @@ public class City {
 		this.mesoregion = mesoregion;
 	}
 
+	public String getColumn(String name){
+		switch (name.toUpperCase()) {
+		case "IBGE_ID":
+			return String.valueOf(ibgeId);
+		case "UF":
+			return uf; 
+		case "NAME":
+			return name;
+		case "CAPITAL":
+			return String.valueOf(capital);
+		case "LAT":
+			return String.valueOf(lat);
+		case "LON":
+			return String.valueOf(lon);
+		case "ALTERNATIVE_NAMES":
+			return alternativeName;
+		case "MICROREGION":
+			return microregion;
+		case "MESOREGION":
+			return mesoregion;
+		case "NO_ACCENTS":
+			return noAccents;
+		default:
+			return "";
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -197,32 +224,11 @@ public class City {
 		return true;
 	}
 	
-	public String getColumn(String name){
-		switch (name.toUpperCase()) {
-		case "IBGE_ID":
-			return String.valueOf(ibgeId);
-		case "UF":
-			return uf; 
-		case "NAME":
-			return name;
-		case "CAPITAL":
-			return String.valueOf(capital);
-		case "LAT":
-			return String.valueOf(lat);
-		case "LON":
-			return String.valueOf(lon);
-		case "ALTERNATIVE_NAMES":
-			return alternativeName;
-		case "MICROREGION":
-			return microregion;
-		case "MESOREGION":
-			return mesoregion;
-		case "NO_ACCENTS":
-			return noAccents;
-		default:
-			return "";
-		}
+	@Override
+	public String toString() {
+		return "City [ibgeId=" + ibgeId + ", uf=" + uf + ", name=" + name + ", capital=" + capital + ", lon=" + lon
+				+ ", lat=" + lat + ", noAccents=" + noAccents + ", alternativeName=" + alternativeName
+				+ ", microregion=" + microregion + ", mesoregion=" + mesoregion + "]";
 	}
-	
 	
 }

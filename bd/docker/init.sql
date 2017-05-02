@@ -11,11 +11,4 @@ CREATE TABLE city(
    mesoregion varchar
 );
 
-COPY City FROM '/docker-entrypoint-initdb.d/cidades.csv' DELIMITER ',' CSV;
-
-UPDATE City SET capital = false WHERE capital is null;
-
-SELECT AddGeometryColumn ('city','geom',0,'POINT',2);
-UPDATE city SET geom = ST_MakePoint(lon, lat);
-CREATE INDEX city_index ON city USING GIST (geom);
 

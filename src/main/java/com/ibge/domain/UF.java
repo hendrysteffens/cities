@@ -1,4 +1,4 @@
-package com.senior.erp.domain;
+package com.ibge.domain;
 
 public class UF {
 	
